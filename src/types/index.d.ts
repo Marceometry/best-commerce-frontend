@@ -19,6 +19,18 @@ export type Product = {
 export type Category = {
   id: string
   name: string
+  slug: string
   createdAt: Date
   updatedAt: Date
+}
+
+export type ProductsByCategory = {
+  categoryName: string
+  products: Product[]
+}
+
+export type Purchase = {
+  id: string
+  userId: string
+  product: Product
 }

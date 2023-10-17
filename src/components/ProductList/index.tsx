@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getProducts } from '@/api'
+import { Product } from '@/types'
 import { formatCurrency } from '@/utils'
 
-export async function ProductList() {
-  const products = await getProducts()
+type Props = {
+  products: Product[]
+}
 
+export function ProductList({ products }: Props) {
   return (
     <section className="flex-1 py-4 px-8">
       <ul className="flex flex-col gap-4">
@@ -24,7 +26,7 @@ export async function ProductList() {
             )}
 
             <div className="flex flex-col justify-between max-w-xl">
-              <div>
+              <Link href={`/products/${product.id}`}>
                 <strong className="text-lg">
                   {formatCurrency(product.price)}
                 </strong>
@@ -32,11 +34,11 @@ export async function ProductList() {
                 <span className="block mt-2 mb-3">{product.name}</span>
 
                 <p className="text-sm">{product.description}</p>
-              </div>
+              </Link>
 
               <Link
-                href="/"
-                className="w-fit inline-block mt-8 py-1 px-4 border rounded transition-colors hover:bg-white hover:text-black"
+                href={`/products/${product.id}/buy`}
+                className="btn-secondary"
               >
                 Buy now
               </Link>

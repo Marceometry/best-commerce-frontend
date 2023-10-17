@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getCategories } from '@/api'
 
 export async function Sidebar() {
@@ -9,7 +10,9 @@ export async function Sidebar() {
 
       <ul className="text-sm mt-2">
         {categories.map((category) => (
-          <li key={category.id}>{category.name}</li>
+          <li key={category.id}>
+            <Link href={`/categories/${category.slug}`}>{category.name}</Link>
+          </li>
         ))}
       </ul>
     </aside>

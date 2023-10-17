@@ -1,12 +1,16 @@
-import { getProducts } from '@/api'
+import { getProductsByCategory } from '@/api'
 import { Footer, Header, ProductList, Sidebar } from '@/components'
 
-export default async function Home() {
-  const products = await getProducts()
+type Props = {
+  params: { slug: string }
+}
+
+export default async function Category({ params: { slug } }: Props) {
+  const { categoryName, products } = await getProductsByCategory(slug)
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header title="Products" />
+      <Header title={categoryName} />
 
       <main className="flex flex-1">
         <Sidebar />
