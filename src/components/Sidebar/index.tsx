@@ -11,7 +11,12 @@ export async function Sidebar() {
       <ul className="text-sm mt-2">
         {categories.map((category) => (
           <li key={category.id}>
-            <Link href={`/categories/${category.slug}`}>{category.name}</Link>
+            <Link
+              href={`/categories/${category.slug}`}
+              className="hover:underline"
+            >
+              {category.name}
+            </Link>
           </li>
         ))}
       </ul>

@@ -39,7 +39,10 @@ export default async function Product({ params: { id } }: Props) {
             <p className="text-sm">{product.description}</p>
           </div>
 
-          <Link href={`/products/${product.id}/buy`} className="btn-primary">
+          <Link
+            href={`/products/${product.id}/buy`}
+            className="btn-primary mt-8"
+          >
             Buy now
           </Link>
         </div>

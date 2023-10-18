@@ -38,7 +38,7 @@ export function ProductList({ products }: Props) {
 
               <Link
                 href={`/products/${product.id}/buy`}
-                className="btn-secondary"
+                className="btn-secondary mt-8"
               >
                 Buy now
               </Link>

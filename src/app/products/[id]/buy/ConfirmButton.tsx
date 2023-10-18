@@ -14,10 +14,10 @@ export async function ConfirmButton({ productId }: Props) {
   const handleConfirmPurchase = async () => {
     try {
       await buyProduct(productId)
-      toast.success('Compra realizada com sucesso!')
+      toast.success('Purchase successful!')
       router.replace('/')
     } catch (error) {
-      toast.error('Algo deu errado')
+      toast.error('Something went wrong while purchasing this product')
       console.log(error)
     }
   }

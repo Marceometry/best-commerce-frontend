@@ -4,3 +4,13 @@ export function formatCurrency(value: number) {
     currency: 'BRL',
   }).format(value / 100)
 }
+
+export function currencyMask(value: string) {
+  const number = Number(value.replace(/\D+/g, ''))
+  if (!number) return ''
+  return formatCurrency(number)
+}
+
+export function currencyUnmask(value: string) {
+  return Number(value.replace(/\D+/g, ''))
+}

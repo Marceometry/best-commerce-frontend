@@ -29,7 +29,7 @@ export default async function Buy({ params: { id } }: Props) {
         <strong className="text-3xl">{formatCurrency(product.price)}</strong>
         <span className="block mt-2 mb-3">{product.name}</span>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 pt-8">
           <CancelButton />
           <ConfirmButton productId={product.id} />
         </div>
