@@ -6,6 +6,11 @@ export type Store = {
   address: any
 }
 
+export type User = {
+  name: string
+  username: string
+}
+
 export type Product = {
   id: string
   name: string

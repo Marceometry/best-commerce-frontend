@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { ACCESS_TOKEN_COOKIE_NAME } from '@/constants'
 import { api } from '@/lib/axios'
-import { login } from '@/services/auth'
 
 export async function POST(request: Request) {
   const body = await request.json()

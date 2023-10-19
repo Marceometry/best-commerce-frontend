@@ -20,3 +20,8 @@ export async function login(payload: Omit<CreateUserDto, 'name'>) {
   const { data } = await axios.post<SignInResponse>('/api/auth/login', payload)
   return data
 }
+
+export async function logout() {
+  const { data } = await axios.post('/api/auth/logout')
+  return data
+}

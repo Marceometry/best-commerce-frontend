@@ -3,10 +3,7 @@ import { ACCESS_TOKEN_COOKIE_NAME } from '@/constants'
 import { api } from '@/lib/axios'
 import { setAuthorizationHeader } from '@/utils'
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function GET(request: NextRequest) {
   const accessToken = request.cookies.get(ACCESS_TOKEN_COOKIE_NAME)?.value
 
   if (!accessToken) {
@@ -16,11 +13,10 @@ export async function POST(
     )
   }
 
-  const { data: purchase } = await api.post(
-    `/products/${params.id}/buy`,
-    null,
+  const { data: user } = await api.get(
+    '/auth/profile',
     setAuthorizationHeader(accessToken),
   )
 
-  return NextResponse.json(purchase, { status: 201 })
+  return NextResponse.json(user)
 }

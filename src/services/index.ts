@@ -1,10 +1,21 @@
 import axios from 'axios'
 import { api } from '@/lib/axios'
-import { Category, Product, ProductsByCategory, Purchase, Store } from '@/types'
-import { setAuthorizationHeader } from '@/utils'
+import {
+  Category,
+  Product,
+  ProductsByCategory,
+  Purchase,
+  Store,
+  User,
+} from '@/types'
 
 export async function getStore() {
   const { data } = await api.get<Store>(`/stores/${process.env.STORE_ID}`)
+  return data
+}
+
+export async function getUser() {
+  const { data } = await axios.get<User>('/api/auth/profile')
   return data
 }
 
