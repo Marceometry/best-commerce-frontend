@@ -13,7 +13,7 @@ export default async function AdminPanel() {
         <aside className="flex-shrink border-r py-4 px-8">
           <ul className="text-sm mt-2">
             <li>
-              <Link href="" className="hover:underline">
+              <Link href="/" className="hover:underline">
                 Company profile
               </Link>
             </li>

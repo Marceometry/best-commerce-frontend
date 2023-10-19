@@ -1,4 +1,7 @@
+'use server'
+
 import axios from 'axios'
+import { cookies } from 'next/headers'
 import { api } from '@/lib/axios'
 import {
   Category,
@@ -8,6 +11,7 @@ import {
   Store,
   User,
 } from '@/types'
+import { getAccessToken, setAuthorizationHeader } from '@/utils'
 
 export async function getStore() {
   const { data } = await api.get<Store>(`/stores/${process.env.STORE_ID}`)
@@ -15,8 +19,16 @@ export async function getStore() {
 }
 
 export async function getUser() {
-  const { data } = await axios.get<User>('/api/auth/profile')
-  return data
+  try {
+    const accessToken = getAccessToken(cookies)
+    const { data } = await api.get<User>(
+      '/auth/profile',
+      setAuthorizationHeader(accessToken),
+    )
+    return data
+  } catch (error) {
+    return null
+  }
 }
 
 export async function getProducts() {

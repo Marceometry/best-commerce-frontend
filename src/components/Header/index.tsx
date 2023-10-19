@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { getStore } from '@/services'
-import { Auth } from './Auth'
+import { getStore, getUser } from '@/services'
+import { LogoutButton } from './LogoutButton'
 
 type Props = {
   title: string
@@ -8,6 +8,7 @@ type Props = {
 
 export async function Header({ title }: Props) {
   const data = await getStore()
+  const user = await getUser()
 
   return (
     <header className="grid grid-cols-3 py-4 px-8 border-b">
@@ -22,7 +23,16 @@ export async function Header({ title }: Props) {
 
       <h1 className="text-2xl text-center">{title}</h1>
 
-      <Auth />
+      <div className="flex items-center justify-end gap-4 text-sm">
+        {user ? (
+          <>
+            <span>{user.name}</span>
+            <LogoutButton />
+          </>
+        ) : (
+          <Link href="/login">Login</Link>
+        )}
+      </div>
     </header>
   )
 }
