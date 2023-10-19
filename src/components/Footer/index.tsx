@@ -1,4 +1,4 @@
-import { getStore } from '@/api'
+import { getStore } from '@/services'
 
 export async function Footer() {
   const data = await getStore()

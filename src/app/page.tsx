@@ -1,5 +1,5 @@
-import { getProducts } from '@/api'
 import { Footer, Header, ProductList, Sidebar } from '@/components'
+import { getProducts } from '@/services'
 
 export default async function Home() {
   const products = await getProducts()

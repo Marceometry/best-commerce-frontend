@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getStore } from '@/api'
+import { getStore } from '@/services'
 
 type Props = {
   title: string

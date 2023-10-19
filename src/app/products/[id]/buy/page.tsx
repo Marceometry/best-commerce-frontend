@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getProductById } from '@/api'
+import { getProductById } from '@/services'
 import { formatCurrency } from '@/utils'
 import { CancelButton } from './CancelButton'
 import { ConfirmButton } from './ConfirmButton'

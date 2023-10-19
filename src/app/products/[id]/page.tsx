@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getProductById } from '@/api'
 import { Footer, Header, Sidebar } from '@/components'
+import { getProductById } from '@/services'
 import { formatCurrency } from '@/utils'
 
 type Props = {

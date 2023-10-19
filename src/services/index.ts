@@ -1,5 +1,7 @@
+import axios from 'axios'
 import { api } from '@/lib/axios'
 import { Category, Product, ProductsByCategory, Purchase, Store } from '@/types'
+import { setAuthorizationHeader } from '@/utils'
 
 export async function getStore() {
   const { data } = await api.get<Store>(`/stores/${process.env.STORE_ID}`)
@@ -33,6 +35,6 @@ export async function getProductById(id: string) {
 }
 
 export async function buyProduct(id: string) {
-  const { data } = await api.get<Purchase>(`/products/${id}/buy`)
+  const { data } = await axios.post<Purchase>(`/api/products/${id}/buy`)
   return data
 }

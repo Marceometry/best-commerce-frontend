@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-import { buyProduct } from '@/api'
+import { buyProduct } from '@/services'
 
 type Props = {
   productId: string

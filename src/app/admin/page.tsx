@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { getStore } from '@/api'
 import { AdminProductList, Footer, Header } from '@/components'
+import { getStore } from '@/services'
 
 export default async function AdminPanel() {
   const store = await getStore()

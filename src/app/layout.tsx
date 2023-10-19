@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { getStore } from '@/api'
 import { Toast } from '@/components'
+import { getStore } from '@/services'
 import '@/styles/globals.css'
 
 export async function generateMetadata(): Promise<Metadata> {

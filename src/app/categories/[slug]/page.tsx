@@ -1,5 +1,5 @@
-import { getProductsByCategory } from '@/api'
 import { Footer, Header, ProductList, Sidebar } from '@/components'
+import { getProductsByCategory } from '@/services'
 
 type Props = {
   params: { slug: string }

@@ -1,4 +1,4 @@
-import { getProducts } from '@/api'
+import { getProducts } from '@/services'
 import { AddNew } from './AddNew'
 import { ProductRow } from './ProductRow'
 
