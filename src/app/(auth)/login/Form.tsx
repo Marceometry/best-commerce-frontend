@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -16,12 +16,14 @@ export function Form() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { handleSubmit, register } = useForm<FormValues>()
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true)
       await login(data)
-      window.location.replace('/')
+      const redirect = searchParams.get('redirect')
+      window.location.replace(redirect || '/')
     } catch (error) {
       toast.error('Something went wrong while logging in')
     } finally {

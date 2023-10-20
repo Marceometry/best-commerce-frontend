@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { api } from '@/lib/axios'
 
 type SignInResponse = {
   access_token: string
@@ -12,16 +11,16 @@ type CreateUserDto = {
 }
 
 export async function signUp(payload: CreateUserDto) {
-  const { data } = await axios.post<SignInResponse>('/api/auth/signup', payload)
+  const { data } = await axios.post<SignInResponse>('/api/signup', payload)
   return data
 }
 
 export async function login(payload: Omit<CreateUserDto, 'name'>) {
-  const { data } = await axios.post<SignInResponse>('/api/auth/login', payload)
+  const { data } = await axios.post<SignInResponse>('/api/login', payload)
   return data
 }
 
 export async function logout() {
-  const { data } = await axios.post('/api/auth/logout')
+  const { data } = await axios.post('/api/logout')
   return data
 }

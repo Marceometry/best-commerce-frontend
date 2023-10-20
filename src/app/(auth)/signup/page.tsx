@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { Form } from './Form'
+import { LoginLink } from './LoginLink'
 
 export default function SignUp() {
   return (
@@ -10,11 +10,7 @@ export default function SignUp() {
         <Form />
 
         <p className="text-xs text-center mt-3">
-          Already have an account?{' '}
-          <Link href="/login" className="text-sky-300 hover:underline">
-            Log in
-          </Link>{' '}
-          instead.
+          Already have an account? <LoginLink /> instead.
         </p>
       </div>
     </div>

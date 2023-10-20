@@ -8,6 +8,9 @@ export function getAccessToken(
   return cookies.get(ACCESS_TOKEN_COOKIE_NAME)?.value || ''
 }
 
-export function setAuthorizationHeader(accessToken: string) {
+export function setAuthorizationHeader(
+  cookies: RequestCookies | ReadonlyRequestCookies,
+) {
+  const accessToken = getAccessToken(cookies)
   return { headers: { Authorization: `Bearer ${accessToken}` } }
 }

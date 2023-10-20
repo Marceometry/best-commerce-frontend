@@ -27,6 +27,9 @@ export async function Header({ title }: Props) {
         {user ? (
           <>
             <span>{user.name}</span>
+            <Link href="/purchases" className="hover:underline">
+              Purchases
+            </Link>
             <LogoutButton />
           </>
         ) : (

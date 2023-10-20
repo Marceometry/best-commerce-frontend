@@ -18,7 +18,6 @@ export async function ConfirmButton({ productId }: Props) {
       router.replace('/')
     } catch (error) {
       toast.error('Something went wrong while purchasing this product')
-      console.log(error)
     }
   }
 

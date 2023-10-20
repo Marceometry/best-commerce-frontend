@@ -1,6 +1,5 @@
 'use server'
 
-import axios from 'axios'
 import { cookies } from 'next/headers'
 import { api } from '@/lib/axios'
 import {
@@ -11,7 +10,7 @@ import {
   Store,
   User,
 } from '@/types'
-import { getAccessToken, setAuthorizationHeader } from '@/utils'
+import { setAuthorizationHeader } from '@/utils'
 
 export async function getStore() {
   const { data } = await api.get<Store>(`/stores/${process.env.STORE_ID}`)
@@ -20,10 +19,9 @@ export async function getStore() {
 
 export async function getUser() {
   try {
-    const accessToken = getAccessToken(cookies())
     const { data } = await api.get<User>(
       '/auth/profile',
-      setAuthorizationHeader(accessToken),
+      setAuthorizationHeader(cookies()),
     )
     return data
   } catch (error) {
@@ -58,6 +56,18 @@ export async function getProductById(id: string) {
 }
 
 export async function buyProduct(id: string) {
-  const { data } = await axios.post<Purchase>(`/api/products/${id}/buy`)
+  const { data } = await api.post<Purchase>(
+    `/products/${id}/buy`,
+    null,
+    setAuthorizationHeader(cookies()),
+  )
+  return data
+}
+
+export async function getPurchases() {
+  const { data } = await api.get<Purchase[]>(
+    `/purchases/at/store/${process.env.STORE_ID}`,
+    setAuthorizationHeader(cookies()),
+  )
   return data
 }

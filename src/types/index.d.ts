@@ -38,4 +38,6 @@ export type Purchase = {
   id: string
   userId: string
   product: Product
+  createdAt: Date
+  updatedAt: Date
 }
