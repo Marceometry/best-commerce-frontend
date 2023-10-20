@@ -5,7 +5,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Input, Modal } from '@/components'
-import { createProduct } from '@/services/admin'
+import { updateProduct } from '@/services/admin'
+import { Product } from '@/types'
 import { currencyMask, currencyUnmask } from '@/utils'
 
 type FormValues = {
@@ -15,7 +16,11 @@ type FormValues = {
   imageUrl?: string
 }
 
-export function AddNew() {
+type Props = {
+  product: Product
+}
+
+export function EditProduct({ product }: Props) {
   const [open, setOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { handleSubmit, register } = useForm<FormValues>()
@@ -24,12 +29,16 @@ export function AddNew() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true)
-      await createProduct({ ...data, price: currencyUnmask(data.price) })
+      await updateProduct({
+        ...data,
+        id: product.id,
+        price: currencyUnmask(data.price),
+      })
       setOpen(false)
-      toast.success('Product successfully created!')
+      toast.success('Product successfully updated!')
       router.refresh()
     } catch (error) {
-      toast.error('Something went wrong while creating this product')
+      toast.error('Something went wrong while updating this product')
     } finally {
       setIsSubmitting(false)
     }
@@ -39,25 +48,28 @@ export function AddNew() {
     <Modal
       open={open}
       setOpen={setOpen}
-      title="Add new product"
-      trigger={<button className="btn-secondary">+ New</button>}
+      title="Edit product"
+      trigger={<button className="btn-secondary text-sm">Edit</button>}
     >
       <form onSubmit={onSubmit}>
         <Input
           label="Name"
           placeholder="Product name"
+          defaultValue={product.name}
           {...register('name')}
           required
         />
         <Input
           label="Description"
           placeholder="Product description"
+          defaultValue={product.description}
           {...register('description')}
           required
         />
         <Input
           label="Price"
           placeholder="R$ 49,99"
+          defaultValue={currencyMask(String(product.price))}
           {...register('price')}
           onChange={(e) => {
             e.target.value = currencyMask(e.target.value)
@@ -68,6 +80,7 @@ export function AddNew() {
         <Input
           label="Image URL"
           placeholder="https:example.com/image.png"
+          defaultValue={product.imageUrl}
           {...register('imageUrl')}
         />
 

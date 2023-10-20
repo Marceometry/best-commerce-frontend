@@ -15,7 +15,8 @@ export async function ConfirmButton({ productId }: Props) {
     try {
       await buyProduct(productId)
       toast.success('Purchase successful!')
-      router.replace('/')
+      router.refresh()
+      router.replace('/purchases')
     } catch (error) {
       toast.error('Something went wrong while purchasing this product')
     }

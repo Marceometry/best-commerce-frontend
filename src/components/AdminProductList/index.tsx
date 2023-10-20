@@ -1,6 +1,8 @@
 import { getProducts } from '@/services'
+import { formatCurrency } from '@/utils'
 import { AddNew } from './AddNew'
-import { ProductRow } from './ProductRow'
+import { DeleteProduct } from './DeleteProduct'
+import { EditProduct } from './EditProduct'
 
 export async function AdminProductList() {
   const products = await getProducts()
@@ -16,7 +18,18 @@ export async function AdminProductList() {
       <table className="w-full max-w-5xl border-collapse">
         <tbody>
           {products.map((product) => (
-            <ProductRow key={product.id} product={product} />
+            <tr key={product.id}>
+              <td className="py-2 px-3 border">{product.name}</td>
+              <td className="py-2 px-3 border text-center">
+                {formatCurrency(product.price)}
+              </td>
+              <td className="py-2 px-3 border w-36">
+                <div className="flex justify-center gap-2">
+                  <EditProduct product={product} />
+                  <DeleteProduct productId={product.id} />
+                </div>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

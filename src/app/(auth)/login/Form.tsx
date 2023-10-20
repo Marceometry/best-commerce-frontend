@@ -15,15 +15,16 @@ type FormValues = {
 export function Form() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { handleSubmit, register } = useForm<FormValues>()
-  const router = useRouter()
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true)
       await login(data)
       const redirect = searchParams.get('redirect')
-      window.location.replace(redirect || '/')
+      router.refresh()
+      router.replace(redirect || '/')
     } catch (error) {
       toast.error('Something went wrong while logging in')
     } finally {

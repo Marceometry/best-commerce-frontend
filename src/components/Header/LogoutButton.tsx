@@ -1,12 +1,16 @@
 'use client'
 
 import { LogOut } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { logout } from '@/services/auth'
 
 export async function LogoutButton() {
+  const router = useRouter()
+
   const handleLogout = async () => {
     await logout()
-    window.location.replace('/')
+    router.refresh()
+    router.replace('/')
   }
 
   return (

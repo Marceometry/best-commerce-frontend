@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Store, User } from '@/types'
-import { getAccessToken, setAuthorizationHeader } from '@/utils'
+import { fetchFromEdge, getAccessToken } from '@/utils'
 
 export async function middleware(req: NextRequest) {
-  const storeId = process.env.STORE_ID
-  const baseURL = process.env.NEXT_PUBLIC_API_URL
-
   const { pathname } = new URL(req.url)
 
   const isAuthPage =
@@ -13,11 +10,7 @@ export async function middleware(req: NextRequest) {
 
   if (isAuthPage && getAccessToken(req.cookies)) {
     try {
-      const user: User = await fetch(
-        `${baseURL}/auth/profile`,
-        setAuthorizationHeader(req.cookies),
-      ).then((res) => res.json())
-
+      const user: User = await fetchFromEdge('/auth/profile', req.cookies)
       if (user?.username) throw new Error('Already logged in')
       return NextResponse.next()
     } catch (error) {
@@ -31,11 +24,7 @@ export async function middleware(req: NextRequest) {
 
   if (isProtectedPage) {
     try {
-      const user: User = await fetch(
-        `${baseURL}/auth/profile`,
-        setAuthorizationHeader(req.cookies),
-      ).then((res) => res.json())
-
+      const user: User = await fetchFromEdge('/auth/profile', req.cookies)
       if (!user?.username) throw new Error('Access denied')
       return NextResponse.next()
     } catch (error) {
@@ -49,12 +38,8 @@ export async function middleware(req: NextRequest) {
 
   if (isAdminRoute) {
     try {
-      const store: Store = await fetch(
-        `${baseURL}/stores`,
-        setAuthorizationHeader(req.cookies),
-      ).then((res) => res.json())
-
-      if (store?.id !== storeId) throw new Error('Access denied')
+      const store: Store = await fetchFromEdge('/stores', req.cookies)
+      if (store?.id !== process.env.STORE_ID) throw new Error('Access denied')
       return NextResponse.next()
     } catch (error) {
       return NextResponse.redirect(

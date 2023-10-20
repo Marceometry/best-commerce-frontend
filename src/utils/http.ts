@@ -14,3 +14,10 @@ export function setAuthorizationHeader(
   const accessToken = getAccessToken(cookies)
   return { headers: { Authorization: `Bearer ${accessToken}` } }
 }
+
+export async function fetchFromEdge(path: string, cookies: RequestCookies) {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL
+  return fetch(baseURL + path, setAuthorizationHeader(cookies)).then((res) =>
+    res.json(),
+  )
+}
