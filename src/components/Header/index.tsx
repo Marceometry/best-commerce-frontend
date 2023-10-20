@@ -12,14 +12,14 @@ export async function Header({ title }: Props) {
 
   return (
     <header className="grid grid-cols-3 py-4 px-8 border-b">
-      <Link href="/">
-        <div className="w-fit grid">
+      <div>
+        <Link href="/" className="w-fit grid">
           <span className="text-lg">{data.name}</span>
           <span className="text-xs leading-none place-self-end">
             Best commerce
           </span>
-        </div>
-      </Link>
+        </Link>
+      </div>
 
       <h1 className="text-2xl text-center">{title}</h1>
 
@@ -30,7 +30,9 @@ export async function Header({ title }: Props) {
             <LogoutButton />
           </>
         ) : (
-          <Link href="/login">Login</Link>
+          <Link href="/login" className="btn-secondary">
+            Login
+          </Link>
         )}
       </div>
     </header>

@@ -22,6 +22,7 @@ export default async function Buy({ params: { id } }: Props) {
               className="w-full h-full object-cover"
               width={320}
               height={240}
+              priority
             />
           </div>
         )}

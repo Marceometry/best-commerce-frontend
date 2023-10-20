@@ -20,7 +20,7 @@ export async function getStore() {
 
 export async function getUser() {
   try {
-    const accessToken = getAccessToken(cookies)
+    const accessToken = getAccessToken(cookies())
     const { data } = await api.get<User>(
       '/auth/profile',
       setAuthorizationHeader(accessToken),

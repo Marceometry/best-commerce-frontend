@@ -25,7 +25,7 @@ export function Form() {
       if (data.password !== data.repeatedPassword) throw new Error('')
       setIsSubmitting(true)
       await signUp(data)
-      router.replace('/')
+      window.location.replace('/')
     } catch (error) {
       toast.error('Something went wrong while logging in')
     } finally {
@@ -58,9 +58,12 @@ export function Form() {
       />
 
       <div className="mt-6 gap-3 flex justify-center">
+        <button className="btn-secondary w-full" onClick={router.back}>
+          Cancel
+        </button>
         <button
           type="submit"
-          className="btn-secondary w-4/5"
+          className="btn-primary w-full"
           disabled={isSubmitting}
         >
           Sign up

@@ -21,7 +21,7 @@ export function Form() {
     try {
       setIsSubmitting(true)
       await login(data)
-      router.replace('/')
+      window.location.replace('/')
     } catch (error) {
       toast.error('Something went wrong while logging in')
     } finally {
@@ -46,9 +46,12 @@ export function Form() {
       />
 
       <div className="mt-6 gap-3 flex justify-center">
+        <button className="btn-secondary w-full" onClick={router.back}>
+          Cancel
+        </button>
         <button
           type="submit"
-          className="btn-secondary w-4/5"
+          className="btn-primary w-full"
           disabled={isSubmitting}
         >
           Login

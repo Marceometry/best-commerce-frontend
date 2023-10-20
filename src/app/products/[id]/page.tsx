@@ -27,6 +27,7 @@ export default async function Product({ params: { id } }: Props) {
                 className="w-full h-full object-cover"
                 width={320}
                 height={240}
+                priority
               />
             </div>
           )}
