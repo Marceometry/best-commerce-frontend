@@ -15,7 +15,7 @@ export default async function Product({ params: { id } }: Props) {
     <div className="flex flex-col min-h-screen">
       <Header title="Detalhes do produto" />
 
-      <main className="flex-1 grid grid-cols-[auto_auto]">
+      <main className="flex-1 grid sm:grid-cols-[auto_auto]">
         <CategoriesSidebar />
 
         <div className="p-4 w-fit flex flex-col items-center">

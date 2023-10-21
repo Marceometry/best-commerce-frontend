@@ -10,9 +10,9 @@ type Props = {
 export function ProductList({ products }: Props) {
   return (
     <section className="flex-1 py-4 px-8">
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-6">
         {products.map((product) => (
-          <li key={product.id} className="flex gap-3">
+          <li key={product.id} className="flex flex-col sm:flex-row gap-3">
             {product.imageUrl && (
               <div className="w-60 h-44 overflow-hidden rounded">
                 <Image
@@ -38,7 +38,7 @@ export function ProductList({ products }: Props) {
 
               <Link
                 href={`/products/${product.id}/buy`}
-                className="btn-secondary mt-8"
+                className="btn-secondary mt-3 sm:mt-8"
               >
                 Buy now
               </Link>

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function AdminSidebar() {
   return (
-    <aside className="flex-shrink border-r border-r-slate-300 py-4 px-8">
+    <aside className="flex-shrink border-b sm:border-b-0 sm:border-r border-slate-300 py-4 px-8">
       <ul className="text-sm mt-2">
         <li>
           <Link href="/admin" className="hover:underline">

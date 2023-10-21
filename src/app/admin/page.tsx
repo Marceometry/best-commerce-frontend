@@ -8,7 +8,7 @@ export default async function AdminPanel() {
     <div className="flex flex-col min-h-screen">
       <Header title={`${store.name} - Admin`} />
 
-      <main className="flex flex-1">
+      <main className="flex flex-1 flex-col sm:flex-row">
         <AdminSidebar />
 
         <AdminProductList />
