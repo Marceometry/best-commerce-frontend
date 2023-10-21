@@ -1,4 +1,4 @@
-import { Footer, Header, ProductList, Sidebar } from '@/components'
+import { CategoriesSidebar, Footer, Header, ProductList } from '@/components'
 import { getProducts } from '@/services'
 
 export default async function Home() {
@@ -10,7 +10,7 @@ export default async function Home() {
 
       <main className="flex-1 grid grid-cols-[auto_auto]">
         <div>
-          <Sidebar />
+          <CategoriesSidebar />
         </div>
 
         <ProductList products={products} />

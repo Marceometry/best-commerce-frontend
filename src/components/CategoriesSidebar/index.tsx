@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { getCategories } from '@/services'
 
-export async function Sidebar() {
+export async function CategoriesSidebar() {
   const categories = await getCategories()
 
   return (
-    <aside className="h-full w-fit border-r py-4 px-8">
+    <aside className="h-full w-fit border-r border-r-slate-300 py-4 px-8">
       <h3>Categories</h3>
 
       <ul className="text-sm mt-2">

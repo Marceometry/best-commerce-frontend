@@ -1,9 +1,21 @@
+export type Address = {
+  id: string
+  number: string
+  street: string
+  neighborhood: string
+  complement: string
+  city: string
+  state: string
+  country: string
+  zipCode: string
+}
+
 export type Store = {
   id: string
   name: string
   createdAt: Date
   updatedAt: Date
-  address: any
+  address: Address
 }
 
 export type User = {

@@ -31,7 +31,7 @@ export function DeleteModal({ productId }: Props) {
       setOpen={setOpen}
       title="Delete product"
       trigger={
-        <button className="btn-primary font-mono text-sm text-white bg-red-500 border-red-500">
+        <button className="btn-primary font-mono text-sm text-slate-100 bg-red-500 border-red-500">
           <X size={16} />
         </button>
       }

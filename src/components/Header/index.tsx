@@ -11,7 +11,7 @@ export async function Header({ title }: Props) {
   const user = await getUser()
 
   return (
-    <header className="grid grid-cols-3 py-4 px-8 border-b">
+    <header className="grid grid-cols-3 py-4 px-8 border-b border-b-slate-300">
       <div>
         <Link href="/" className="w-fit grid">
           <span className="text-lg">{data.name}</span>

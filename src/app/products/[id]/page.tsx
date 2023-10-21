@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Footer, Header, Sidebar } from '@/components'
+import { CategoriesSidebar, Footer, Header } from '@/components'
 import { getProductById } from '@/services'
 import { formatCurrency } from '@/utils'
 
@@ -16,7 +16,7 @@ export default async function Product({ params: { id } }: Props) {
       <Header title="Detalhes do produto" />
 
       <main className="flex-1 grid grid-cols-[auto_auto]">
-        <Sidebar />
+        <CategoriesSidebar />
 
         <div className="p-4 w-fit flex flex-col items-center">
           {product.imageUrl && (

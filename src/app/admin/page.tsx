@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { AdminProductList, Footer, Header } from '@/components'
+import { AdminProductList, AdminSidebar, Footer, Header } from '@/components'
 import { getStore } from '@/services'
 
 export default async function AdminPanel() {
@@ -10,15 +9,7 @@ export default async function AdminPanel() {
       <Header title={`${store.name} - Admin`} />
 
       <main className="flex flex-1">
-        <aside className="flex-shrink border-r py-4 px-8">
-          <ul className="text-sm mt-2">
-            <li>
-              <Link href="/" className="hover:underline">
-                Company profile
-              </Link>
-            </li>
-          </ul>
-        </aside>
+        <AdminSidebar />
 
         <AdminProductList />
       </main>

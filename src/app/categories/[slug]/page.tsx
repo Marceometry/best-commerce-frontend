@@ -1,4 +1,4 @@
-import { Footer, Header, ProductList, Sidebar } from '@/components'
+import { CategoriesSidebar, Footer, Header, ProductList } from '@/components'
 import { getProductsByCategory } from '@/services'
 
 type Props = {
@@ -13,7 +13,7 @@ export default async function Category({ params: { slug } }: Props) {
       <Header title={categoryName} />
 
       <main className="flex-1 grid grid-cols-[auto_auto]">
-        <Sidebar />
+        <CategoriesSidebar />
 
         <ProductList products={products} />
       </main>

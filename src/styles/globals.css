@@ -2,19 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: 0, 0, 0;
-}
-
 html {
   color-scheme: dark;
 }
 
 body {
   min-height: 100vh;
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
 }
 
 :disabled {
@@ -23,9 +16,9 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply w-fit inline-block py-1 px-4 border rounded-lg transition-opacity bg-white text-black hover:opacity-75 focus:opacity-75;
+    @apply w-fit inline-block py-1 px-4 rounded-lg transition-opacity border border-slate-200 bg-slate-200 text-slate-950 hover:opacity-75 focus-visible:opacity-75;
   }
   .btn-secondary {
-    @apply w-fit inline-block py-1 px-4 border rounded-lg transition-colors hover:bg-white hover:text-black focus:bg-white focus:text-black;
+    @apply w-fit inline-block py-1 px-4 rounded-lg transition-colors border border-slate-200 hover:bg-slate-200 hover:text-slate-950 focus-visible:bg-slate-200 focus-visible:text-slate-950;
   }
 }
