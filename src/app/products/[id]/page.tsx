@@ -15,10 +15,10 @@ export default async function Product({ params: { id } }: Props) {
     <div className="flex flex-col min-h-screen">
       <Header title="Detalhes do produto" />
 
-      <main className="flex flex-1">
+      <main className="flex-1 grid grid-cols-[auto_auto]">
         <Sidebar />
 
-        <div className="p-4 mx-auto flex flex-col items-center">
+        <div className="p-4 w-fit flex flex-col items-center">
           {product.imageUrl && (
             <div className="w-96 h-72 mb-8 overflow-hidden rounded">
               <Image

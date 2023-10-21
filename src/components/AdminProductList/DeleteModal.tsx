@@ -11,7 +11,7 @@ type Props = {
   productId: string
 }
 
-export function DeleteProduct({ productId }: Props) {
+export function DeleteModal({ productId }: Props) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
 

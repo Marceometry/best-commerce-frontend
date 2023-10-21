@@ -12,7 +12,7 @@ export default async function Category({ params: { slug } }: Props) {
     <div className="flex flex-col min-h-screen">
       <Header title={categoryName} />
 
-      <main className="flex flex-1">
+      <main className="flex-1 grid grid-cols-[auto_auto]">
         <Sidebar />
 
         <ProductList products={products} />

@@ -8,8 +8,10 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen">
       <Header title="Products" />
 
-      <main className="flex flex-1">
-        <Sidebar />
+      <main className="flex-1 grid grid-cols-[auto_auto]">
+        <div>
+          <Sidebar />
+        </div>
 
         <ProductList products={products} />
       </main>

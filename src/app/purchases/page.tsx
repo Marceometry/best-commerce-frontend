@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Footer, Header } from '@/components'
 import { getPurchases } from '@/services'
 import { formatCurrency } from '@/utils'
@@ -15,9 +16,13 @@ export default async function Purchases() {
           <p>Você ainda não fez nenhuma compra.</p>
         </main>
       ) : (
-        <main className="flex-1 grid grid-cols-2 gap-y-4 gap-x-8 p-8 mx-auto">
+        <main className="flex-1 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-4 gap-x-8 p-8 mx-auto">
           {purchases.map((purchase) => (
-            <div key={purchase.id} className="w-fit">
+            <Link
+              key={purchase.id}
+              href={`/products/${purchase.product.id}`}
+              className="w-fit group"
+            >
               {purchase.product.imageUrl && (
                 <div className="w-60 h-44 mb-2 overflow-hidden rounded">
                   <Image
@@ -31,12 +36,14 @@ export default async function Purchases() {
               )}
 
               <div className="flex gap-2">
-                <strong>{formatCurrency(purchase.product.price)}</strong>
+                <strong>{formatCurrency(purchase.amount)}</strong>
                 <span>|</span>
-                <span>{purchase.product.name}</span>
+                <span className="group-hover:underline">
+                  {purchase.product.name}
+                </span>
               </div>
               <p>{new Date(purchase.createdAt).toLocaleString()}</p>
-            </div>
+            </Link>
           ))}
         </main>
       )}

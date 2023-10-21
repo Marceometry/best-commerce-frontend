@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Input, Modal } from '@/components'
-import { updateProduct } from '@/services/admin'
+import { createProduct, updateProduct } from '@/services/admin'
 import { Product } from '@/types'
 import { currencyMask, currencyUnmask } from '@/utils'
 
@@ -17,10 +17,10 @@ type FormValues = {
 }
 
 type Props = {
-  product: Product
+  product?: Product
 }
 
-export function EditProduct({ product }: Props) {
+export function ProductModal({ product }: Props) {
   const [open, setOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { handleSubmit, register } = useForm<FormValues>()
@@ -29,16 +29,23 @@ export function EditProduct({ product }: Props) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true)
-      await updateProduct({
-        ...data,
-        id: product.id,
-        price: currencyUnmask(data.price),
-      })
+      const payload = { ...data, price: currencyUnmask(data.price) }
+      if (product?.id) {
+        await updateProduct({ ...payload, id: product.id })
+      } else {
+        await createProduct(payload)
+      }
       setOpen(false)
-      toast.success('Product successfully updated!')
+      toast.success(
+        `Product successfully ${product?.id ? 'updated' : 'created'}!`,
+      )
       router.refresh()
     } catch (error) {
-      toast.error('Something went wrong while updating this product')
+      toast.error(
+        `Something went wrong while ${
+          product?.id ? 'updating' : 'creating'
+        } this product`,
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -49,27 +56,31 @@ export function EditProduct({ product }: Props) {
       open={open}
       setOpen={setOpen}
       title="Edit product"
-      trigger={<button className="btn-secondary text-sm">Edit</button>}
+      trigger={
+        <button className="btn-secondary text-sm">
+          {product?.id ? 'Edit' : '+ New'}
+        </button>
+      }
     >
       <form onSubmit={onSubmit}>
         <Input
           label="Name"
           placeholder="Product name"
-          defaultValue={product.name}
+          defaultValue={product?.name}
           {...register('name')}
           required
         />
         <Input
           label="Description"
           placeholder="Product description"
-          defaultValue={product.description}
+          defaultValue={product?.description}
           {...register('description')}
           required
         />
         <Input
           label="Price"
           placeholder="R$ 49,99"
-          defaultValue={currencyMask(String(product.price))}
+          defaultValue={currencyMask(String(product?.price))}
           {...register('price')}
           onChange={(e) => {
             e.target.value = currencyMask(e.target.value)
@@ -80,7 +91,7 @@ export function EditProduct({ product }: Props) {
         <Input
           label="Image URL"
           placeholder="https:example.com/image.png"
-          defaultValue={product.imageUrl}
+          defaultValue={product?.imageUrl}
           {...register('imageUrl')}
         />
 

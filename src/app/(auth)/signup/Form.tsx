@@ -1,7 +1,7 @@
 'use client'
 
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -18,6 +18,7 @@ type FormValues = {
 export function Form() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { handleSubmit, register } = useForm<FormValues>()
+  const searchParams = useSearchParams()
   const router = useRouter()
 
   const onSubmit = handleSubmit(async (data) => {
@@ -25,7 +26,9 @@ export function Form() {
       if (data.password !== data.repeatedPassword) throw new Error('')
       setIsSubmitting(true)
       await signUp(data)
-      window.location.replace('/')
+      const redirect = searchParams.get('redirect')
+      router.refresh()
+      router.replace(redirect || '/')
     } catch (error) {
       toast.error('Something went wrong while logging in')
     } finally {

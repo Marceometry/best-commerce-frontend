@@ -36,6 +36,7 @@ export type ProductsByCategory = {
 
 export type Purchase = {
   id: string
+  amount: number
   userId: string
   product: Product
   createdAt: Date
