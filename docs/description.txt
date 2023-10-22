@@ -1,0 +1,34 @@
+I developed this Frontend to consume the API built in the Backend task. This project needs a STORE_ID, that represents the company that will use this whitelabel e-commerce. This is the ID of the company's entity in the API's database, which is linked to the products, categories, etc.
+This means that every company that wishes to use this system will have to host a version of this frontend (rebranding the look of the website), but every frontend will consume the same API, using the STORE_ID to identify itself.
+
+Page structure:
+├ [public]  /                      ## products list
+├ [public]  /products/[id]         ## single product page
+├ [private] /products/[id]/buy     ## product purchase page
+├ [public]  /categories/[slug]     ## products filtered by category
+├ [private] /purchases             ## list of user's purchases
+├ [private] /admin                 ## admin panel with product CRUD
+├ [private] /admin/company-profile ## displays the name and address of the store
+├ [public]  /login                 ## login existing users
+└ [public]  /signup                ## sign up new users
+
+This project was fun to develop, since I was able to test new features of Next.js 13, which was launched earlier this year.
+Next is a good solution for this project mainly due to its Server-Side Rendering features, enhancing SEO. With the new React Server Components, it reduces the amount of JavaScript the browser processes.
+One of its experimental features is Server Actions, which simplifies cookies management for server-side authentication, for example.
+Another feature that helped the development process is the Middleware, which enables control over the access to protected pages without hitting the client, preventing layout shifts and improving security.
+I have been working with Next.js for about 3 years, so I'm familiar with the development of both the "Pages" folder and the "App" folder (new version).
+
+For styling, I used TailwindCSS, the default CSS framework in the Next.js boilerplate. This framework is one of the most developer-friendly I've used, enabling quick and easy style creation, and it also improves final user experience, since all the utility classes are processed at build time.
+What I truly enjoy about frontend development is faithfully translating design prototypes into structured and styled pages. I am a developer, not a designer, so the visual appeal of this website might not be so good. But, as all my projects, I prioritize user experience and accessibility features like comprehensive keyboard navigation and the appropriate use of HTML tags.
+
+So, using Tailwind and Next.js with SSR, Server Components and Server Actions (among other features), I was able to build an extremely performant and secure website, since all data is fetched server-side.
+
+Some points of improvement:
+- The design can be significantly improved, to provide a better base for companies using the system;
+- While I've ensured responsiveness, it can be further refined for a better appearance on smaller devices;
+- Something crucial is the addition of a cart feature to handle the purchase of multiple products;
+- Add a real payment solution (like Stripe) to the purchase feature;
+- Allow users to add reviews about the products they've bought;
+- Improve error handling, based on specific API responses, rather than displaying only generic error messages;
+
+For instructions on how to run the project, see README.md
